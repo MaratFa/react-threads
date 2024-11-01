@@ -2,23 +2,24 @@ import { BsPostcard } from "react-icons/bs"
 import { NavButton } from "../nav-button"
 import { FiUsers } from "react-icons/fi"
 import { FaUsers } from "react-icons/fa"
+import type React from "react"
 
-export const NavBar = () => {
+export const NavBar: React.FC = () => {
   return (
     <nav>
       <ul className="flex flex-col gap-5">
         <li>
-          <NavButton icon={<BsPostcard />} href="/">
+          <NavButton href="/" icon={<BsPostcard />}>
             Посты
           </NavButton>
         </li>
         <li>
-          <NavButton icon={<FiUsers />} href="following">
+          <NavButton href="following" icon={<FiUsers />}>
             Подписки
           </NavButton>
         </li>
         <li>
-          <NavButton icon={<FaUsers />} href="followers">
+          <NavButton href="followers" icon={<FaUsers />}>
             Подписчики
           </NavButton>
         </li>
