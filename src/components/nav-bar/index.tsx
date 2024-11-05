@@ -1,8 +1,8 @@
-import { BsPostcard } from "react-icons/bs"
-import { NavButton } from "../nav-button"
-import { FiUsers } from "react-icons/fi"
-import { FaUsers } from "react-icons/fa"
-import type React from "react"
+import type React from "react";
+import { BsPostcard } from "react-icons/bs";
+import { FaUsers } from "react-icons/fa";
+import { FiUsers } from "react-icons/fi";
+import { NavButton } from "../nav-button";
 
 export const NavBar: React.FC = () => {
   return (
@@ -25,5 +25,5 @@ export const NavBar: React.FC = () => {
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};

@@ -1,31 +1,57 @@
-import { useContext } from "react"
-import { ThemeContext } from "../theme-provider"
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-} from "@nextui-org/react"
-import { LuSunMedium } from "react-icons/lu"
-import { FaRegMoon } from "react-icons/fa"
+  Button,
+} from "@nextui-org/react";
+import { LuSunMedium } from "react-icons/lu";
+import { FaRegMoon } from "react-icons/fa";
+import { useDispatch, useSelector } from "../../app/hooks";
+import { CiLogout } from "react-icons/ci";
+import { logout, selectIsAuthenticated } from "../../features/user/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../theme-provider";
 
 export const Header = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext)
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("token");
+    navigate("/auth");
+  };
 
   return (
     <Navbar>
       <NavbarBrand>
         <p className="font-bold text-inherit">Network Social</p>
       </NavbarBrand>
+
       <NavbarContent justify="end">
         <NavbarItem
           className="lg:flex text-3xl cursor-pointer"
-          onClick={toggleTheme}
+          onClick={() => toggleTheme()}
         >
           {theme === "light" ? <FaRegMoon /> : <LuSunMedium />}
         </NavbarItem>
-        <NavbarItem></NavbarItem>
+        <NavbarItem>
+          {isAuthenticated && (
+            <Button
+              color="default"
+              variant="flat"
+              className="gap-2"
+              onClick={handleLogout}
+            >
+              <CiLogout /> <span>Выйти</span>
+            </Button>
+          )}
+        </NavbarItem>
       </NavbarContent>
     </Navbar>
-  )
-}
+  );
+};

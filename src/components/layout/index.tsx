@@ -1,24 +1,25 @@
-import { useEffect } from "react"
-import { Container } from "../container"
-import { Header } from "../header"
-import { NavBar } from "../nav-bar/index"
-import { Outlet, useNavigate } from "react-router-dom"
-import { useSelector } from "../../app/hooks"
+import { useEffect } from "react";
+import { Container } from "../container";
+import { NavBar } from "../nav-bar";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Profile } from "../profile";
+import { useSelector } from "../../app/hooks";
 import {
-  selectIsAuthenticated,
   selectUser,
-} from "../../features/user/userSlice"
+  selectIsAuthenticated,
+} from "../../features/user/userSlice";
+import { Header } from "../header";
 
 export const Layout = () => {
-  const isAuthenticated = useSelector(selectIsAuthenticated)
-  const user = useSelector(selectUser)
-  const navigate = useNavigate()
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/auth")
+      navigate("/auth");
     }
-  }, [])
+  }, []);
 
   return (
     <>
@@ -31,9 +32,9 @@ export const Layout = () => {
           <Outlet />
         </div>
         <div className="flex-2 p-4">
-          
+          <div className="flex-col flex gap-5">{!user && <Profile />}</div>
         </div>
       </Container>
     </>
-  )
-}
+  );
+};

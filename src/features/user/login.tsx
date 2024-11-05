@@ -1,4 +1,4 @@
-import { Input } from "../../components/input"
+ import { Input } from "../../components/input"
 import { useForm } from "react-hook-form"
 import { Button, Link } from "@nextui-org/react"
 import {

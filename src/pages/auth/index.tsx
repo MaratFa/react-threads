@@ -1,10 +1,13 @@
-import { Card, CardBody, Tabs, Tab } from "@nextui-org/react"
-import { useState } from "react"
-import { Login } from "../../features/user/login"
-import { Register } from "../../features/user/register"
+import { Card, CardBody, Tabs, Tab } from "@nextui-org/react";
+import { useState } from "react";
+import { Login } from "../../features/user/login";
+import { Register } from "../../features/user/register";
+import { useAuthGuard } from "../../hooks/useAuthGuard";
 
 export const Auth = () => {
-  const [selected, setSelected] = useState("login")
+  const [selected, setSelected] = useState("login");
+
+  useAuthGuard();
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -15,7 +18,7 @@ export const Auth = () => {
               fullWidth
               size="md"
               selectedKey={selected}
-              onSelectionChange={key => setSelected(key as string)}
+              onSelectionChange={(key) => setSelected(key as string)}
             >
               <Tab key="login" title="Вход">
                 <Login setSelected={setSelected} />
@@ -28,5 +31,5 @@ export const Auth = () => {
         </Card>
       </div>
     </div>
-  )
-}
+  );
+};
