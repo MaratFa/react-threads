@@ -18,3 +18,4 @@ export const MetaInfo: React.FC<Props> = ({ count, Icon }) => {
     </div>
   );
 };
+ 
