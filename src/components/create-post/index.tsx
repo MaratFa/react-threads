@@ -1,32 +1,32 @@
-import { Button, Textarea } from "@nextui-org/react";
-import { IoMdCreate } from "react-icons/io";
+import { Button, Textarea } from "@nextui-org/react"
+import { IoMdCreate } from "react-icons/io"
 import {
   useCreatePostMutation,
   useLazyGetAllPostsQuery,
-} from "../../app/services/postsApi";
-import { useForm, Controller } from "react-hook-form";
-import { ErrorMessage } from "../error-message";
+} from "../../app/services/postsApi"
+import { useForm, Controller } from "react-hook-form"
+import { ErrorMessage } from "../error-message"
 
 export const CreatePost = () => {
-  const [createPost] = useCreatePostMutation();
-  const [triggerAllPosts] = useLazyGetAllPostsQuery();
+  const [createPost] = useCreatePostMutation()
+  const [triggerGetAllPosts] = useLazyGetAllPostsQuery()
   const {
     handleSubmit,
     control,
     formState: { errors },
     setValue,
-  } = useForm();
+  } = useForm()
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await createPost({ content: data.post }).unwrap();
-      setValue("post", "");
-      await triggerAllPosts().unwrap();
+      await createPost({ content: data.post }).unwrap()
+      setValue("post", "")
+      await triggerGetAllPosts().unwrap()
     } catch (error) {
-      console.log("err", error);
+      console.log("err", error)
     }
-  });
-  const error = errors?.post?.message as string;
+  })
+  const error = errors?.post?.message as string
 
   return (
     <form className="flex-grow" onSubmit={onSubmit}>
@@ -41,7 +41,7 @@ export const CreatePost = () => {
           <Textarea
             {...field}
             labelPlacement="outside"
-            placeholder="О чем думаете?"
+            placeholder="О чем думайте?"
             className="mb-5"
           />
         )}
@@ -56,5 +56,5 @@ export const CreatePost = () => {
         Добавить пост
       </Button>
     </form>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
- import { Input } from "../../components/input"
+import { Input } from "../../components/input"
 import { useForm } from "react-hook-form"
 import { Button, Link } from "@nextui-org/react"
 import {
@@ -41,15 +41,14 @@ export const Login = ({ setSelected }: Props) => {
   const onSubmit = async (data: Login) => {
     try {
       await login(data).unwrap()
-      await triggerCurrentQuery().unwrap()
+      await triggerCurrentQuery()
       navigate("/")
-    } catch (error) {
-      if (hasErrorField(error)) {
-        setError(error.data.error)
+    } catch (err) {
+      if (hasErrorField(err)) {
+        setError(err.data.error)
       }
     }
   }
-
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <Input

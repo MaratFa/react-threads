@@ -7,5 +7,6 @@ export const AuthGuard = ({ children }: { children: JSX.Element }) => {
   if (isLoading) {
     return <Spinner />
   }
+
   return children
 }

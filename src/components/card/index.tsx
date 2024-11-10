@@ -22,7 +22,7 @@ import { FcDislike } from "react-icons/fc";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { formatToClientDate } from "../../utils/format-to-client-date";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { useSelector } from "../../app/hooks";
+import { useSelector } from "react-redux";
 import { selectCurrent } from "../../features/user/userSlice";
 import { useDeleteCommentMutation } from "../../app/services/commentsApi";
 import { Spinner } from "@nextui-org/react";
@@ -89,7 +89,13 @@ export const Card = ({
         ? await unlikePost(id).unwrap()
         : await likePost({ postId: id }).unwrap();
 
-      await refetchPosts();
+      if (cardFor === "current-post") {
+        await triggerGetPostById(id).unwrap();
+      }
+
+      if (cardFor === "post") {
+        await triggerGetAllPosts().unwrap();
+      }
     } catch (err) {
       if (hasErrorField(err)) {
         setError(err.data.error);

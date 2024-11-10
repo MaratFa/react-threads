@@ -1,25 +1,25 @@
-import { useEffect } from "react";
-import { Container } from "../container";
-import { NavBar } from "../nav-bar";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Profile } from "../profile";
-import { useSelector } from "../../app/hooks";
+import { useEffect } from "react"
+import { Container } from "../container"
+import { NavBar } from "../nav-bar"
+import { Link, Outlet, useNavigate } from "react-router-dom"
+import { Profile } from "../profile"
+import { useSelector } from "react-redux"
 import {
   selectUser,
   selectIsAuthenticated,
-} from "../../features/user/userSlice";
-import { Header } from "../header";
+} from "../../features/user/userSlice"
+import { Header } from "../header"
 
 export const Layout = () => {
-  const isAuthenticated = useSelector(selectIsAuthenticated);
-  const user = useSelector(selectUser);
-  const navigate = useNavigate();
+  const isAuthenticated = useSelector(selectIsAuthenticated)
+  const user = useSelector(selectUser)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/auth");
+      navigate("/auth")
     }
-  }, []);
+  }, [])
 
   return (
     <>
@@ -36,5 +36,5 @@ export const Layout = () => {
         </div>
       </Container>
     </>
-  );
-};
+  )
+}

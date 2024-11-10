@@ -1,12 +1,13 @@
-import { FaRegArrowAltCircleLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import React from "react"
+import { FaRegArrowAltCircleLeft } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 
 export const GoBack = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleGoBack = () => {
-    navigate(-1);
-  };
+    navigate(-1)
+  }
 
   return (
     <div
@@ -16,5 +17,5 @@ export const GoBack = () => {
       <FaRegArrowAltCircleLeft />
       Назад
     </div>
-  );
-};
+  )
+}

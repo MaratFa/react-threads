@@ -1,11 +1,12 @@
-import { Button as NextButton } from "@nextui-org/react";
+import { Button as NextButton } from "@nextui-org/react"
+import React from "react"
 
 type Props = {
-  children: React.ReactNode;
-  icon?: JSX.Element;
-  className?: string;
-  type?: "button" | "submit" | "reset";
-  fullWidth?: boolean;
+  children: React.ReactNode
+  icon?: JSX.Element
+  className?: string
+  type?: "button" | "submit" | "reset"
+  fullWidth?: boolean
   color?:
     | "default"
     | "primary"
@@ -13,8 +14,8 @@ type Props = {
     | "success"
     | "warning"
     | "danger"
-    | undefined;
-};
+    | undefined
+}
 
 export const Button: React.FC<Props> = ({
   children,
@@ -36,5 +37,5 @@ export const Button: React.FC<Props> = ({
     >
       {children}
     </NextButton>
-  );
-};
+  )
+}

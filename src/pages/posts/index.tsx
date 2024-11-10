@@ -1,9 +1,9 @@
-import { Card } from "../../components/card";
-import { CreatePost } from "../../components/create-post";
-import { useGetAllPostsQuery } from "../../app/services/postsApi";
+import { Card } from "../../components/card"
+import { CreatePost } from "../../components/create-post"
+import { useGetAllPostsQuery } from "../../app/services/postsApi"
 
 export const Posts = () => {
-  const { data } = useGetAllPostsQuery();
+  const { data } = useGetAllPostsQuery()
 
   return (
     <>
@@ -35,9 +35,9 @@ export const Posts = () => {
                 createdAt={createdAt}
                 cardFor="post"
               />
-            )
+            ),
           )
         : null}
     </>
-  );
-};
+  )
+}

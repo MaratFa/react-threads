@@ -1,29 +1,30 @@
-import { Card, CardBody, CardHeader, Image } from "@nextui-org/react";
-import { useSelector } from "../../app/hooks";
-import { selectCurrent } from "../../features/user/userSlice";
-import { MdAlternateEmail } from "react-icons/md";
-import { BASE_URL } from "../../constants";
-import { Link } from "react-router-dom";
+import { Card, CardHeader, CardBody, Image } from "@nextui-org/react"
+import { useSelector } from "react-redux"
+import { selectCurrent } from "../../features/user/userSlice"
+import { MdAlternateEmail } from "react-icons/md"
+import { BASE_URL } from "../../constants"
+import { Link } from "react-router-dom"
 
 export const Profile = () => {
-  const current = useSelector(selectCurrent);
+  const current = useSelector(selectCurrent)
 
   if (!current) {
-    return null;
+    return null
   }
 
-  const { name, email, avatarUrl, id } = current;
+  const { name, email, avatarUrl, id } = current
+
   return (
     <Card className="py-4 w-[302px]">
-      <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
+      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
         <Image
-          alt="Card profile"
+          alt="Card background"
           className="object-cover rounded-xl"
           src={`${BASE_URL}${avatarUrl}`}
           width={370}
-        ></Image>
+        />
       </CardHeader>
-      <CardBody>
+      <CardBody className="overflow-visible py-2">
         <Link to={`/users/${id}`}>
           <h4 className="font-bold text-large mb-2">{name}</h4>
         </Link>
@@ -33,5 +34,5 @@ export const Profile = () => {
         </p>
       </CardBody>
     </Card>
-  );
-};
+  )
+}

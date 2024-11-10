@@ -1,6 +1,6 @@
+import React from "react"
+import { Control, useController } from "react-hook-form"
 import { Input as NextInput } from "@nextui-org/react"
-import type { Control } from "react-hook-form"
-import { useController } from "react-hook-form"
 
 type Props = {
   name: string
@@ -28,9 +28,7 @@ export const Input: React.FC<Props> = ({
   } = useController({
     name,
     control,
-    rules: {
-      required,
-    },
+    rules: { required },
   })
 
   return (
@@ -45,6 +43,7 @@ export const Input: React.FC<Props> = ({
       onChange={field.onChange}
       onBlur={field.onBlur}
       errorMessage={`${errors[name]?.message ?? ""}`}
+      endContent={endContent}
     />
   )
 }

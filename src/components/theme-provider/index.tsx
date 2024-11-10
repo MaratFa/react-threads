@@ -11,8 +11,8 @@ export const ThemeContext = React.createContext<ThemeContextType>({
 })
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const storedTheme = localStorage.getItem("theme");
-  const currentTheme = storedTheme ? storedTheme as "dark" | "light" : "dark";
+  const storedTheme = localStorage.getItem('theme');
+  const currentTheme = storedTheme ? storedTheme as 'dark' | 'light' : 'dark';
 
   const [theme, setTheme] = React.useState<"dark" | "light">(currentTheme)
 
@@ -21,7 +21,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === "light" ? "dark" : "light";
-      localStorage.setItem("theme", newTheme);
+      localStorage.setItem('theme', newTheme);
 
       return newTheme
     })

@@ -1,14 +1,14 @@
-import { useSelector } from "../../../src/app/hooks";
-import { selectCurrent } from "../../features/user/userSlice";
-import { Link } from "react-router-dom";
-import { Card, CardBody } from "@nextui-org/react";
-import { User } from "../../components/user";
+import { useSelector } from "react-redux"
+import { selectCurrent } from "../../features/user/userSlice"
+import { Link } from "react-router-dom"
+import { Card, CardBody } from "@nextui-org/react"
+import { User } from "../../components/user"
 
 export const Following = () => {
-  const currentUser = useSelector(selectCurrent);
+  const currentUser = useSelector(selectCurrent)
 
   if (!currentUser) {
-    return null;
+    return null
   }
 
   return currentUser.following.length > 0 ? (
@@ -28,6 +28,6 @@ export const Following = () => {
       ))}
     </div>
   ) : (
-    <h2>Вы ни на кого не подписаны</h2>
-  );
-};
+    <h2>Вы не подписаны ни на кого</h2>
+  )
+}

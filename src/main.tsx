@@ -1,4 +1,5 @@
 import React from "react"
+import ReactDOM from "react-dom/client"
 import { Provider } from "react-redux"
 import { NextUIProvider } from "@nextui-org/react"
 import { store } from "./app/store"
@@ -8,13 +9,11 @@ import { Auth } from "./pages/auth"
 import { AuthGuard } from "./features/user/authGuard"
 import { Posts } from "./pages/posts"
 import { ThemeProvider } from "./components/theme-provider"
-import { createRoot } from "react-dom/client"
-import { Layout } from "./components/layout/index"
+import { Layout } from "./components/layout"
+import { UserProfile } from "./pages/user-profile"
 import { CurrentPost } from "./pages/current-post"
 import { Followers } from "./pages/followers"
 import { Following } from "./pages/following"
-
-const container = document.getElementById("root")
 
 const router = createBrowserRouter([
   {
@@ -34,6 +33,10 @@ const router = createBrowserRouter([
         element: <CurrentPost />,
       },
       {
+        path: "users/:id",
+        element: <UserProfile />,
+      },
+      {
         path: "followers",
         element: <Followers />,
       },
@@ -45,24 +48,14 @@ const router = createBrowserRouter([
   },
 ])
 
-if (container) {
-  const root = createRoot(container)
-
-  root.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <NextUIProvider>
-          <ThemeProvider>
-            <AuthGuard>
-              <RouterProvider router={router} />
-            </AuthGuard>
-          </ThemeProvider>
-        </NextUIProvider>
-      </Provider>
-    </React.StrictMode>,
-  )
-} else {
-  throw new Error(
-    "Root element with ID 'root' was not found in the document. Ensure there is a corresponding HTML element with the ID 'root' in your HTML file.",
-  )
-}
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <ThemeProvider>
+        <AuthGuard>
+          <RouterProvider router={router} />
+        </AuthGuard>
+      </ThemeProvider>
+    </Provider>
+  </React.StrictMode>,
+)

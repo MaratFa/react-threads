@@ -1,7 +1,7 @@
-import type { Comment } from "../types";
-import { api } from "./api";
+import { Comment } from "../types"
+import { api } from "./api"
 
-export const commentApi = api.injectEndpoints({
+export const commentsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     createComment: builder.mutation<Comment, Partial<Comment>>({
       query: (newComment) => ({
@@ -17,11 +17,11 @@ export const commentApi = api.injectEndpoints({
       }),
     }),
   }),
-});
+})
 
 export const { useCreateCommentMutation, useDeleteCommentMutation } =
-  commentApi;
+  commentsApi
 
 export const {
   endpoints: { createComment, deleteComment },
-} = commentApi;
+} = commentsApi
